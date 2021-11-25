@@ -1,53 +1,51 @@
+const form = document.getElementById('form');
+const title = document.getElementById('title');
+const desc = document.getElementById('description');
+const cat = document.getElementById('category');
 
-    //var x=0;
-    var erreur ;
-    var title = document.getElementById("title");
-    var desc = document.getElementById("description");
-    var cat = document.getElementById("category");
-    var tt=true;
-    for(var i=0;i<title.value.length;i++)
-    {
-        if (((title.value.charCodeAt(i) >= 65) && (title.value.charCodeAt(i) <= 90)) || ((title.value.charCodeAt(i) >= 97 ) && (title.value.charCodeAt(i) <= 122)) || (title.value.charCodeAt(i) == 32)||((title.value.charCodeAt(i) >= 48 )&&(title.value.charCodeAt(i) <= 57)))
-        {
-            tt=true;
+form.addEventListener('submit', e => {
+e.preventDefault();
 
-        }
-        else
-        {
-            tt=false;
+checkInputs();
+});
 
-            break;
-        }
-    }
-    if ((!title.value) || (!tt))
-    {
-        
-        erreur="*";
-        document.getElementById("errorT").innerHTML=erreur;
-        //alert("add title");
-    }else{
-        title.value=title.value.charAt(0).toUpperCase() + title.value.slice(1).toLowerCase() ;
-        document.getElementById("errorT").innerHTML="";
-    }
-    if (!desc.value) 
-    {
-        
-        erreur="*";
-        document.getElementById("errorD").innerHTML=erreur;
-        //alest("add description");
-    }
-    else{
-        document.getElementById("errorD").innerHTML="";
-    }  
-    if (cat.value=="")
-    {
-        erreur="*";
-        document.getElementById("errorC").innerHTML=erreur;
-      
+function checkInputs() {
+// trim to remove the whitespaces
+const titleValue = title.value.trim();
+const descValue = desc.value.trim();
+if(titleValue === '') {
+    setErrorFor(title, 'Title cannot be blank');
+} else{
+    title.value=title.value.charAt(0).toUpperCase() + title.value.slice(1).toLowerCase() ;
+    setSuccessFor(title);
+}
 
-    }else{
-        document.getElementById("errorC").innerHTML="";
-    }   
+if(descValue === '') {
+    setErrorFor(desc, 'Description cannot be blank');
+} else {
+    setSuccessFor(desc);
+}
+if(cat.value===''){
+    setErrorFor(cat, 'Choose category');
+} else {
+    setSuccessFor(cat);
+}
 
+}
 
+function setErrorFor(input, message) {
+const formControl = input.parentElement;
+const small = formControl.querySelector('small');
+formControl.className = 'mb-3 error';
+small.innerText = message;
+}
 
+function setSuccessFor(input) {
+const formControl = input.parentElement;
+formControl.className = 'mb-3 success';
+}
+   
+   
+   
+   
+  
