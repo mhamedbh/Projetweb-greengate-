@@ -65,7 +65,10 @@
 
                 <div class="be-comment">
                     <div class="be-img-comment"> <a href="#"> <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment"> </a></div>
-                    <div class="be-comment-content"> <span class="be-comment-name"> <a href="#"><?php echo $comment['pseudo_u']; ?>&nbsp;&nbsp;</i></a><a href="modifier_Comment.php?id_c=<?php echo $comment['id_c']; ?>"><i class="fas fa-edit"></i></a> </span> 
+                    <div class="be-comment-content"> <span class="be-comment-name"> <a href="#"><?php echo $comment['pseudo_u']; ?>&nbsp;&nbsp;</i></a>
+                    <?php if ($comment['id_u']=='56565') {?>
+                    <a href="modifier_Comment.php?id_c=<?php echo $comment['id_c']; ?>"><i class="fas fa-edit"></i></a> <?php } ?>
+                    </span> 
                     <span class="be-comment-time"> <i class="fa fa-clock-o"></i> <?php echo $comment['date_c']; ?> </span>
                     <p class="be-comment-text"> <?php echo $comment['message']; ?></p>
                     </div>

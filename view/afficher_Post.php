@@ -2,8 +2,18 @@
 <?php
 	include '../Controller/PostC.php';
 	$postC=new PostC();
-	$listePosts=$postC->afficherPost(); 
+	$listePosts=$postC->afficherPost();
+    if (isset($_POST['search'])){
+        $list =$postC->afficherComments($_POST['search']);
+    } 
 ?>
+<?php
+	//include '../Controller/CommentC.php';
+	//$commentC=new CommentC();
+	//$total=$commentC->countComments($_get['id_post']);
+?>
+
+
 
 
 
@@ -141,8 +151,11 @@
                                         </div>
                                         <div class="text-muted small text-center align-self-center"> 
                                             <a href="#" class="text-secondary"><span><i class="far fa-eye"></i> 19</span></a>
-                                            <a href="afficher_Comments.php?id_post=<?php echo $post['id_post']; ?>" class="text-secondary"><span><i class="far fa-comment ml-2"></i> 3</span></div></a>
-                                            
+                                            <?php //foreach($total as $value) {?>
+                                            <a href="afficher_Comments.php?id_post=<?php echo $post['id_post']; ?>" class="text-secondary">
+                                            <span><i class="far fa-comment ml-2"></i> 3 <?php // echo $value ?></span></a>
+                                            <?php // }?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

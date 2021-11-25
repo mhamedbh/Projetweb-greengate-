@@ -83,6 +83,22 @@
 				$e->getMessage();
 			}
 		}
+		function afficherComments($id_post)
+		{
+			try {
+				$pdo = config::getConnexion();
+				$query = $pdo->prepare(
+					'SELECT * FROM comment where post = :id'
+				);
+				$query->execute(
+					['id' => $id_post ]
+				);
+				return $query->fetchAll();
+			} catch (PDOException $e){
+				$e->getMessage();
+			}
+		}
+		
 
 	}
 ?>

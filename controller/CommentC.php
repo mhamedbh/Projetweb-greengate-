@@ -84,22 +84,19 @@
 				$e->getMessage();
 			}
 		}
-     /*   function countComments($id_post){
-            $sql="SELECT count(id_c) as total from comment where id_post=$id_post";
+        function countComments($id_post){
+            $sql="SELECT count(id_c) from comment where id_post=$id_post";
             $db = config::getConnexion();
             try{
-				$query=$db->prepare($sql);
-				$query->execute();
-
-				$values=$query->fetch();
-				return $values['total'];
+				$value = $db->query($sql);
+				return $value;
 			}
-			catch (Exception $e){
-				die('Erreur: '.$e->getMessage());
+			catch(Exception $e){
+				die('Erreur:'. $e->getMessage());
 			}
 
 
-        }*/
+        }
 
 	}
 ?>
